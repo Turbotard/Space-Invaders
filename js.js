@@ -38,12 +38,12 @@ class Player {
 
   // Méthode qui permet au joueur de se déplacer vers la gauche
   moveLeft() {
-    this.x -= 5;
+    this.x -= 25;
   }
 
   // Méthode qui permet au joueur de se déplacer vers la droite
   moveRight() {
-    this.x += 5;
+    this.x += 25;
   }
 
   // Méthode qui permet au joueur de tirer
@@ -51,7 +51,7 @@ class Player {
     // Vérifie si le joueur peut tirer (cooldown de 500 ms)
     if (Date.now() - this.shootTime > 500) {
       // Création d'un nouveau tir
-      let shot = new Shot(this.x, this.y);
+      let shot = new Shot(this.x+5, this.y+5);
       game.shots.push(shot);
       this.shootTime = Date.now();
     }
@@ -130,6 +130,7 @@ class Game {
       alien.y += 1;
     });
   }
+  
 }
 
 // Création d'un nouveau jeu
@@ -176,4 +177,23 @@ alienImage.src = "alien.jpg";
 let playerImage = new Image();
 playerImage.src = "player.jpg";
 
-
+game.aliens.forEach((alien) => {
+  if (alien.alive) {
+    game.shots.forEach((shot) => {
+      if (alien.isColliding(shot)) {
+        // L'alien a été touché par le tir
+        alien.destroy();
+      }
+    });
+  }
+});
+// Suppression des tirs qui ont touché un alien
+game.shots = game.shots.filter((shot) => {
+  let hasHit = false;
+  game.aliens.forEach((alien) => {
+    if (alien.isColliding(shot)) {
+      hasHit = true;
+    }
+  });
+  return !hasHit;
+});
