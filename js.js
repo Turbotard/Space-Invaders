@@ -1,3 +1,33 @@
+// Fonction qui dessine le jeu sur le canvas
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
+function draw(ctx) {
+  
+
+  // Effacement du canvas
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+  // Dessin des aliens et du joueur sur le canvas
+  game.aliens.forEach((alien) => {
+    if (alien.alive) {
+      // Dessin de l'alien normal
+      ctx.fillRect(alien.x, alien.y, 10, 10);
+    } else {
+      // Dessin de l'alien en train de mourir
+      ctx.fillStyle = "red";
+      ctx.fillRect(alien.x, alien.y, 10, 10);
+    }
+  });
+
+  // Dessin du joueur sur le canvas
+  ctx.fillRect(game.player.x, game.player.y, 10, 10);
+
+  // Dessin des tirs sur le canvas
+  game.shots.forEach((shot) => {
+    ctx.fillRect(shot.x, shot.y, 2, 2);
+  });
+}
+
 class Player {
   // Constructeur de la classe Player
   constructor(x, y) {
@@ -9,13 +39,11 @@ class Player {
   // Méthode qui permet au joueur de se déplacer vers la gauche
   moveLeft() {
     this.x -= 5;
-    console.log("gauche")
   }
 
   // Méthode qui permet au joueur de se déplacer vers la droite
   moveRight() {
     this.x += 5;
-    console.log("droite")
   }
 
   // Méthode qui permet au joueur de tirer
@@ -76,8 +104,8 @@ class Game {
     this.score += points;
   }
 
-  // Méthode qui met à jour l'état du jeu
-  update() {
+   // Méthode qui met à jour l'état du jeu
+   update() {
     // Mise à jour de la position des tirs
     this.shots.forEach((shot) => {
       shot.y -= 5;
@@ -92,5 +120,60 @@ class Game {
         }
       });
     });
+
+    // Suppression des tirs et des aliens morts
+    this.shots = this.shots.filter((shot) => shot.y > 0);
+    this.aliens = this.aliens.filter((alien) => !alien.isDead());
+
+    // Mise à jour de la position des aliens
+    this.aliens.forEach((alien) => {
+      alien.y += 1;
+    });
   }
 }
+
+// Création d'un nouveau jeu
+let game = new Game();
+
+// Mise à jour et dessin du jeu à chaque frame
+function gameLoop() {
+  game.update();
+  draw(ctx);
+  requestAnimationFrame(gameLoop);
+}
+
+
+
+// Gestion des événements de clavier
+document.addEventListener("keydown", (event) => {
+  switch (event.code) {
+    case "ArrowLeft":
+      game.player.moveLeft();
+      break;
+    case "ArrowRight":
+      game.player.moveRight();
+      break;
+    case "Space":
+      game.player.shoot();
+      break;
+  }
+});
+
+// Appel de la fonction gameLoop pour démarrer le jeu
+requestAnimationFrame(gameLoop);
+// Création de la grille de aliens
+for (let i = 0; i < 10; i++) {
+  for (let j = 0; j < 5; j++) {
+    let alien = new Alien(i * 50, j * 50);
+    game.aliens.push(alien);
+  }
+}
+
+// Chargement des images
+let alienImage = new Image();
+alienImage.src = "alien.jpg";
+
+let playerImage = new Image();
+playerImage.src = "player.jpg";
+
+
