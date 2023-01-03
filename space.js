@@ -1,3 +1,11 @@
+const stars = document.querySelector('.stars');
+let xPos = 0;
+
+setInterval(() => {
+  xPos -= 2;
+  stars.style.backgroundPosition = `${xPos}px 0`;
+}, 30);
+
 let game = document.getElementById("spaceInvader");
 
 let largeurGame = game.offsetWidth;
