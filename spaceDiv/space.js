@@ -12,8 +12,9 @@ let largeurGame = game.offsetWidth;
 let hauteurGame = game.offsetHeight;
 
 
-function makeSpaceInvader(colonne,divParColonne){
+function makeSpaceInvader(colonne,divParColonne,alien){
 
+  let alienCompteur = 0; 
   ValeurVertical = largeurGame/divParColonne;
   ValeurColonne= hauteurGame/colonne;
 
@@ -26,21 +27,21 @@ function makeSpaceInvader(colonne,divParColonne){
     createCol.style.display = "flex";
     createCol.setAttribute("class","col")
     game.append(createCol);
-    console.log(colonne);
-
+   
     for(a=1; a<divParColonne;a++){
 
       if(a == 1){
 
-      let divDansColonne = document.createElement("div");
-      divDansColonne.style.width = `${ValeurVertical}px`;
-      divDansColonne.style.height = `100%`;
-      divDansColonne.style.border = 'solid 1px black';
-      divDansColonne.setAttribute("class","start")
-      createCol.append(divDansColonne);
+        let divDansColonne = document.createElement("div");
+        divDansColonne.style.width = `${ValeurVertical}px`;
+        divDansColonne.style.height = `100%`;
+        divDansColonne.style.border = 'solid 1px black';
+        divDansColonne.setAttribute("class","start")
+        createCol.append(divDansColonne);
+  
+        }
 
-      }
-      
+
       if(a == divParColonne-1){
 
         let divDansColonne = document.createElement("div");
@@ -52,11 +53,25 @@ function makeSpaceInvader(colonne,divParColonne){
   
         }else{
 
+
           let divDansColonne = document.createElement("div");
           divDansColonne.style.width = `${ValeurVertical}px`;
           divDansColonne.style.height = `100%`;
           divDansColonne.style.border = 'solid 1px black';
+          divDansColonne.setAttribute("class","potentiel");
           createCol.append(divDansColonne);
+          
+          if(alienCompteur < alien){
+
+            console.log(alienCompteur);
+            let cl = document.getElementsByClassName("potentiel");
+            let change = cl[alienCompteur]
+            change.style.backgroundImage = "url('/img/alien.jpg')";
+            change.style.backgroundSize = "cover";
+            console.log(change);
+
+            alienCompteur++
+          }
 
         }
 
@@ -68,9 +83,13 @@ function makeSpaceInvader(colonne,divParColonne){
 
 }
 
-makeSpaceInvader(10,10);
+makeSpaceInvader(10,10,32);
+// makeSpaceInvader(10,10);
 
 
 
-let doc = document.getElementsByTagName("div");
-console.log(doc);
+// let doc = document.getElementsByTagName("div");
+// console.log(doc);
+
+// let cl = document.getElementsByClassName("potentiel");
+// console.log(cl);

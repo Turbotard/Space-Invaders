@@ -24,3 +24,8 @@
     left: 0;
     bottom: 0;
   }
+
+  .alien{
+    background-image: url("/img/alien.jpg");
+  }
+
