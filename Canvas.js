@@ -1,3 +1,12 @@
+const stars = document.querySelector('.stars');
+let xPos = 0;
+
+setInterval(() => {
+  xPos -= 1;
+  stars.style.backgroundPosition = `${xPos}px 0`;
+}, 30);
+
+
 // Fonction qui dessine le jeu sur le canvas
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
