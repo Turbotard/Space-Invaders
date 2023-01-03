@@ -145,6 +145,7 @@ class Game {
     
   }
   
+  
 }
 class Alien {
   
@@ -182,26 +183,14 @@ class Alien {
  // Méthode qui détruit l'alien
  destroy() {
    // Retire l'alien de la liste des aliens dans la classe Game
-   this.game.aliens.splice(this.game.aliens.indexOf(this), 1);
+   //this.game.aliens.splice(this.game.aliens.indexOf(this), 1);
  }
 }
 
 // Création d'un nouveau jeu
 let game = new Game();
 
-// Mise à jour et dessin du jeu à chaque frame
-function gameLoop() {
-  // Mise à jour de l'état du jeu
-  game.update();
 
-  // Dessin du jeu
-  game.draw(ctx);
-
-  // Si le jeu n'est pas terminé, on relance la boucle
-  if (!game.gameOver) {
-    requestAnimationFrame(gameLoop);
-  }
-}
 
 
 
@@ -232,10 +221,10 @@ for (let i = 0; i < 10; i++) {
 
 // Chargement des images
 let alienImage = new Image();
-alienImage.src = "alien.jpg";
+alienImage.src = "../img/alien.jpg";
 
 let playerImage = new Image();
-playerImage.src = "player.jpg";
+playerImage.src = "../img/player.jpg";
 
 game.aliens.forEach((alien) => {
   if (alien.alive) {
@@ -257,3 +246,16 @@ game.shots = game.shots.filter((shot) => {
   });
   return !hasHit;
 });
+// Mise à jour et dessin du jeu à chaque frame
+function gameLoop() {
+  // Mise à jour de l'état du jeu
+  game.update();
+
+  // Dessin du jeu
+  game.draw(ctx);
+
+  // Si le jeu n'est pas terminé, on relance la boucle
+  if (!game.gameOver) {
+    requestAnimationFrame(gameLoop);
+  }
+}

@@ -17,7 +17,7 @@
     bottom: 0;
 }
 .stars {
-    background: url('stars.webp');
+    background: url('../img/stars.webp');
     height: 100%;
     width: 100%;
     position: fixed;
