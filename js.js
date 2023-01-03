@@ -24,15 +24,15 @@ function draw(ctx) {
 
   // Dessin des tirs sur le canvas
   game.shots.forEach((shot) => {
-    ctx.fillRect(shot.x, shot.y, 2, 2);
+    ctx.fillRect(shot.x, shot.y, 3, 3);
   });
 }
 
 class Player {
   // Constructeur de la classe Player
   constructor(x, y) {
-    this.x = x;
-    this.y = y;
+    this.x = x+125;
+    this.y = y+280;
     this.shootTime = 0; // Moment où le joueur a tiré pour la dernière fois
   }
 
@@ -60,34 +60,68 @@ class Player {
 
 class Shot {
   // Constructeur de la classe Shot
-  constructor(x, y) {
+  constructor(x, y, game) {
     this.x = x;
     this.y = y;
+    this.game = game;
+    this.speed = 8;
+    this.width = 5;
+    this.height = 15;
+  }
+
+  // Méthode qui met à jour la position du tir
+  update() {
+    this.y -= this.speed;
+  }
+
+  // Méthode qui dessine le tir
+  draw(ctx) {
+    ctx.fillStyle = "white";
+    ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 }
 
 class Alien {
   // Constructeur de la classe Alien
-  constructor(x, y) {
+  constructor(x, y, game) {
     this.x = x;
     this.y = y;
+    this.game = game;
     this.alive = true;
+    this.width = 50;
+    this.height = 50;
+  }
+  draw(ctx) {
+    ctx.fillStyle = "green";
+    ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
   // Méthode qui vérifie si l'alien est touché par un tir
-  isHit(x, y) {
-    return this.x === x && this.y === y;
+  isColliding(shot) {
+    return (
+      shot.x < this.x + this.width &&
+      shot.x + shot.width > this.x &&
+      shot.y < this.y + this.height &&
+      shot.y + shot.height > this.y
+    );
   }
 
   // Méthode qui tue l'alien
   destroy() {
     this.alive = false;
+    this.x = -100;
+    this.y = -100;
+    this.game.aliens = this.game.aliens.filter((alien) => alien !== this);
   }
 
   // Méthode qui indique si l'alien est mort
   isDead() {
     return !this.alive;
   }
+  update() {
+    this.x += Math.sin(Date.now() / 1000);
+  }
+
 }
 
 class Game {
@@ -107,18 +141,20 @@ class Game {
    // Méthode qui met à jour l'état du jeu
    update() {
     // Mise à jour de la position des tirs
-    this.shots.forEach((shot) => {
-      shot.y -= 5;
-    });
+   // Mise à jour de la position des tirs
+   this.shots.forEach((shot) => {
+    shot.update();
+  });
 
-    // Vérification des collisions
+    // Vérification des collisions entre les tirs et les aliens
     this.aliens.forEach((alien) => {
-      this.shots.forEach((shot) => {
-        if (alien.isHit(shot.x, shot.y)) {
-          alien.destroy();
-          this.addScore(1); // Ajout d'un point au score
-        }
-      });
+      if (alien.alive) {
+        this.shots.forEach((shot) => {
+          if (alien.isColliding(shot)) {
+            alien.destroy();
+          }
+        });
+      }
     });
 
     // Suppression des tirs et des aliens morts
@@ -127,8 +163,26 @@ class Game {
 
     // Mise à jour de la position des aliens
     this.aliens.forEach((alien) => {
-      alien.y += 1;
+      alien.y += 0.5;
     });
+    if (this.gameOver) {
+      this.ctx.font = "48px serif";
+      this.ctx.fillText("Game Over!", 200, 250);
+      this.ctx.fillText(`Score: ${this.score}`, 200, 300);
+    }
+    // Vérification des collisions entre les tirs et les aliens
+    this.aliens.forEach((alien) => {
+      if (alien.alive) {
+        this.shots.forEach((shot) => {
+          if (alien.isColliding(shot)) {
+            alien.destroy();
+            this.score += 100;
+          }
+        });
+      }
+    });
+   
+    
   }
   
 }
