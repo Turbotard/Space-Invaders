@@ -1,0 +1,17 @@
+#spaceInvader{
+    width: 100%;
+    height: 500px;
+    /* border-style: solid; */
+
+    
+
+}
+
+#gameCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 630px;
+    margin: auto;
+}
