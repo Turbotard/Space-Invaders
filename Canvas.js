@@ -76,53 +76,12 @@ class Shot {
 
   // Méthode qui dessine le tir
   draw(ctx) {
-    ctx.fillStyle = "white";
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-  }
-}
-
-class Alien {
-  // Constructeur de la classe Alien
-  constructor(x, y, game) {
-    this.x = x;
-    this.y = y;
-    this.game = game;
-    this.alive = true;
-    this.width = 50;
-    this.height = 50;
-  }
-  draw(ctx) {
     ctx.fillStyle = "green";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
-
-  // Méthode qui vérifie si l'alien est touché par un tir
-  isColliding(shot) {
-    return (
-      shot.x < this.x + this.width &&
-      shot.x + shot.width > this.x &&
-      shot.y < this.y + this.height &&
-      shot.y + shot.height > this.y
-    );
-  }
-
-  // Méthode qui tue l'alien
-  destroy() {
-    this.alive = false;
-    this.x = -100;
-    this.y = -100;
-    this.game.aliens = this.game.aliens.filter((alien) => alien !== this);
-  }
-
-  // Méthode qui indique si l'alien est mort
-  isDead() {
-    return !this.alive;
-  }
-  update() {
-    this.x += Math.sin(Date.now() / 1000);
-  }
-
 }
+
+
 
 class Game {
   // Constructeur de la classe Game
@@ -140,37 +99,12 @@ class Game {
 
    // Méthode qui met à jour l'état du jeu
    update() {
-    // Mise à jour de la position des tirs
    // Mise à jour de la position des tirs
    this.shots.forEach((shot) => {
     shot.update();
   });
 
-    // Vérification des collisions entre les tirs et les aliens
-    this.aliens.forEach((alien) => {
-      if (alien.alive) {
-        this.shots.forEach((shot) => {
-          if (alien.isColliding(shot)) {
-            alien.destroy();
-          }
-        });
-      }
-    });
-
-    // Suppression des tirs et des aliens morts
-    this.shots = this.shots.filter((shot) => shot.y > 0);
-    this.aliens = this.aliens.filter((alien) => !alien.isDead());
-
-    // Mise à jour de la position des aliens
-    this.aliens.forEach((alien) => {
-      alien.y += 0.5;
-    });
-    if (this.gameOver) {
-      this.ctx.font = "48px serif";
-      this.ctx.fillText("Game Over!", 200, 250);
-      this.ctx.fillText(`Score: ${this.score}`, 200, 300);
-    }
-    // Vérification des collisions entre les tirs et les aliens
+     // Vérification des collisions entre les tirs et les aliens
     this.aliens.forEach((alien) => {
       if (alien.alive) {
         this.shots.forEach((shot) => {
@@ -181,10 +115,66 @@ class Game {
         });
       }
     });
-   
+    // Suppression des tirs et des aliens morts
+    this.shots = this.shots.filter((shot) => shot.y > 0);
+    this.aliens = this.aliens.filter((alien) => !alien.destroy());
+
+    // Mise à jour de la position des aliens
+    this.aliens.forEach((alien) => {
+      if (alien.alive) {
+        alien.update();
+      }
+      else{
+        alien.update();
+      }
+    });
+    if (this.gameOver) {
+      this.ctx.font = "48px serif";
+      this.ctx.fillText("Game Over!", 200, 250);
+      this.ctx.fillText(`Score: ${this.score}`, 200, 300);
+    }
     
   }
   
+}
+class Alien {
+  
+  // Constructeur de la classe Alien
+  constructor(x, y, game) {
+   this.x = x;
+   this.y = y;
+   this.game = game;
+   this.alive = true;
+   this.width = 50;
+   this.height = 50;
+ }
+
+ // Méthode qui dessine l'alien
+ draw(ctx) {
+   ctx.fillStyle = "green";
+   ctx.fillRect(this.x, this.y, this.width, this.height);
+ }
+
+ // Méthode qui met à jour la position de l'alien
+ update() {
+   this.x += Math.sin(Date.now() / 1000);
+ }
+
+ // Méthode qui vérifie si le tir touche l'alien
+ isColliding(shot) {
+   return (
+     shot.x < this.x + this.width &&
+     shot.x + shot.width > this.x &&
+     shot.y < this.y + this.height &&
+     shot.y + shot.height > this.y
+   );
+ }
+
+ // Méthode qui détruit l'alien
+ destroy() {
+   // Retire l'alien de la liste des aliens dans la classe Game
+   this.game.aliens.splice(this.game.aliens.indexOf(this), 1);
+ }
 }
 
 // Création d'un nouveau jeu
@@ -192,9 +182,16 @@ let game = new Game();
 
 // Mise à jour et dessin du jeu à chaque frame
 function gameLoop() {
+  // Mise à jour de l'état du jeu
   game.update();
-  draw(ctx);
-  requestAnimationFrame(gameLoop);
+
+  // Dessin du jeu
+  game.draw(ctx);
+
+  // Si le jeu n'est pas terminé, on relance la boucle
+  if (!game.gameOver) {
+    requestAnimationFrame(gameLoop);
+  }
 }
 
 
