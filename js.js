@@ -9,11 +9,13 @@ class Player {
   // Méthode qui permet au joueur de se déplacer vers la gauche
   moveLeft() {
     this.x -= 5;
+    console.log("gauche")
   }
 
   // Méthode qui permet au joueur de se déplacer vers la droite
   moveRight() {
     this.x += 5;
+    console.log("droite")
   }
 
   // Méthode qui permet au joueur de tirer
