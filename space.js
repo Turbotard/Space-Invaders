@@ -1,4 +1,3 @@
-
 let game = document.getElementById("spaceInvader");
 
 let largeurGame = game.offsetWidth;
@@ -17,6 +16,7 @@ function makeSpaceInvader(colonne,divParColonne){
     createCol.style.border = 'solid 1px black';
     createCol.style.height = `${ValeurColonne}px`;
     createCol.style.display = "flex";
+    createCol.setAttribute("class","col")
     game.append(createCol);
     console.log(colonne);
 
@@ -60,7 +60,9 @@ function makeSpaceInvader(colonne,divParColonne){
 
 }
 
-makeSpaceInvader(10,20);
+makeSpaceInvader(10,10);
+
+
 
 let doc = document.getElementsByTagName("div");
 console.log(doc);
