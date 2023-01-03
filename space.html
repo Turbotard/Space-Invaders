@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <div class="stars"></div>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,34 @@
     <link rel="stylesheet" href="space.css">
 </head>
 <body>
-    <div class="stars"></div>
+    <style>
+        .box {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100px;
+          height: 100px;
+          background-color: red;
+        }
+      </style>
+      
+      <div class="box"> </div>
+      
+      <script>
+        document.addEventListener('keydown', event => {
+          const box = document.querySelector('.box');
+          const rect = box.getBoundingClientRect();
+      
+          if (event.key === 'ArrowRight') {
+            box.style.left = `${rect.left + 10}px`;
+          } else if (event.key === 'ArrowLeft') {
+            box.style.left = `${rect.left - 10}px`;
+          }
+        });
+      </script>
+      
+  
+    
 
 
     <div id="gameCenter">

@@ -35,7 +35,7 @@ function makeSpaceInvader(colonne,divParColonne){
       let divDansColonne = document.createElement("div");
       divDansColonne.style.width = `${ValeurVertical}px`;
       divDansColonne.style.height = `100%`;
-      divDansColonne.style.border = 'solid 1px black';
+      divDansColonne.style.border = 'solid 1px red';
       divDansColonne.setAttribute("class","start")
       createCol.append(divDansColonne);
 
