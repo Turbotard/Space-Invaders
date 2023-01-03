@@ -10,9 +10,7 @@ setInterval(() => {
 // Fonction qui dessine le jeu sur le canvas
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
-function draw(ctx) {
-  
-
+function draw(game, ctx) {
   // Effacement du canvas
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
@@ -36,6 +34,7 @@ function draw(ctx) {
     ctx.fillRect(shot.x, shot.y, 3, 3);
   });
 }
+
 
 class Player {
   // Constructeur de la classe Player
@@ -93,7 +92,9 @@ class Shot {
 
 
 class Game {
+  
   // Constructeur de la classe Game
+
   constructor() {
     this.aliens = [];
     this.player = new Player(100, 200);
@@ -106,25 +107,31 @@ class Game {
     this.score += points;
   }
 
-   // Méthode qui met à jour l'état du jeu
-   update() {
-   // Mise à jour de la position des tirs
-   this.shots.forEach((shot) => {
-    shot.update();
-  });
+     // Méthode qui met à jour l'état du jeu
+  update() {
+    // Mise à jour de la position des tirs
+    this.shots.forEach((shot) => {
+      shot.update();
+    });
 
-     // Vérification des collisions entre les tirs et les aliens
+    // Vérification des collisions entre les tirs et les aliens
     this.aliens.forEach((alien) => {
       if (alien.alive) {
         this.shots.forEach((shot) => {
-          if (alien.isColliding(shot)) {
-            alien.destroy();
-            this.score += 100;
+          if (alien.isCollidingWith(shot)) {
+            // Si il y a collision, l'alien est détruit et le joueur gagne des points
+            alien.alive = false;
+            this.addScore(10);
           }
         });
       }
     });
-    // Suppression des tirs et des aliens morts
+
+    // Dessin du jeu sur le canvas
+    draw(ctx);
+  
+
+this.shots = [];
     this.shots = this.shots.filter((shot) => shot.y > 0);
     this.aliens = this.aliens.filter((alien) => !alien.destroy());
 
@@ -143,9 +150,12 @@ class Game {
       this.ctx.fillText(`Score: ${this.score}`, 200, 300);
     }
     
-  }
-  
 }
+}
+
+  
+  
+
 class Alien {
   
   // Constructeur de la classe Alien
@@ -182,26 +192,14 @@ class Alien {
  // Méthode qui détruit l'alien
  destroy() {
    // Retire l'alien de la liste des aliens dans la classe Game
-   this.game.aliens.splice(this.game.aliens.indexOf(this), 1);
+   //this.game.aliens.splice(this.game.aliens.indexOf(this), 1);
  }
 }
 
 // Création d'un nouveau jeu
 let game = new Game();
 
-// Mise à jour et dessin du jeu à chaque frame
-function gameLoop() {
-  // Mise à jour de l'état du jeu
-  game.update();
 
-  // Dessin du jeu
-  game.draw(ctx);
-
-  // Si le jeu n'est pas terminé, on relance la boucle
-  if (!game.gameOver) {
-    requestAnimationFrame(gameLoop);
-  }
-}
 
 
 
@@ -232,10 +230,10 @@ for (let i = 0; i < 10; i++) {
 
 // Chargement des images
 let alienImage = new Image();
-alienImage.src = "alien.jpg";
+alienImage.src = "../img/alien.jpg";
 
 let playerImage = new Image();
-playerImage.src = "player.jpg";
+playerImage.src = "../img/player.jpg";
 
 game.aliens.forEach((alien) => {
   if (alien.alive) {
@@ -257,3 +255,16 @@ game.shots = game.shots.filter((shot) => {
   });
   return !hasHit;
 });
+// Mise à jour et dessin du jeu à chaque frame
+function gameLoop() {
+  // Mise à jour de l'état du jeu
+  game.update();
+
+  // Dessin du jeu
+  draw(ctx);
+
+  // Si le jeu n'est pas terminé, on relance la boucle
+  if (!game.gameOver) {
+    requestAnimationFrame(gameLoop);
+  }
+}
