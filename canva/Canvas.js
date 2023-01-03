@@ -10,9 +10,7 @@ setInterval(() => {
 // Fonction qui dessine le jeu sur le canvas
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
-function draw(ctx) {
-  
-
+function draw(game, ctx) {
   // Effacement du canvas
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
@@ -36,6 +34,7 @@ function draw(ctx) {
     ctx.fillRect(shot.x, shot.y, 3, 3);
   });
 }
+
 
 class Player {
   // Constructeur de la classe Player
@@ -93,7 +92,9 @@ class Shot {
 
 
 class Game {
+  
   // Constructeur de la classe Game
+
   constructor() {
     this.aliens = [];
     this.player = new Player(100, 200);
@@ -106,25 +107,31 @@ class Game {
     this.score += points;
   }
 
-   // Méthode qui met à jour l'état du jeu
-   update() {
-   // Mise à jour de la position des tirs
-   this.shots.forEach((shot) => {
-    shot.update();
-  });
+     // Méthode qui met à jour l'état du jeu
+  update() {
+    // Mise à jour de la position des tirs
+    this.shots.forEach((shot) => {
+      shot.update();
+    });
 
-     // Vérification des collisions entre les tirs et les aliens
+    // Vérification des collisions entre les tirs et les aliens
     this.aliens.forEach((alien) => {
       if (alien.alive) {
         this.shots.forEach((shot) => {
-          if (alien.isColliding(shot)) {
-            alien.destroy();
-            this.score += 100;
+          if (alien.isCollidingWith(shot)) {
+            // Si il y a collision, l'alien est détruit et le joueur gagne des points
+            alien.alive = false;
+            this.addScore(10);
           }
         });
       }
     });
-    // Suppression des tirs et des aliens morts
+
+    // Dessin du jeu sur le canvas
+    draw(ctx);
+  
+
+this.shots = [];
     this.shots = this.shots.filter((shot) => shot.y > 0);
     this.aliens = this.aliens.filter((alien) => !alien.destroy());
 
@@ -143,10 +150,12 @@ class Game {
       this.ctx.fillText(`Score: ${this.score}`, 200, 300);
     }
     
-  }
-  
-  
 }
+}
+
+  
+  
+
 class Alien {
   
   // Constructeur de la classe Alien
@@ -252,7 +261,7 @@ function gameLoop() {
   game.update();
 
   // Dessin du jeu
-  game.draw(ctx);
+  draw(ctx);
 
   // Si le jeu n'est pas terminé, on relance la boucle
   if (!game.gameOver) {
