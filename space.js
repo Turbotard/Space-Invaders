@@ -1,10 +1,14 @@
-const stars = document.querySelector('.stars');
-let xPos = 0;
+// je pose ça la tu en fait ce que tu veux mais c'est utile car ça fait gauche droite 
+document.addEventListener('keydown', event => {
+  const box = document.querySelector('.box');
+  const rect = box.getBoundingClientRect();
 
-setInterval(() => {
-  xPos -= 2;
-  stars.style.backgroundPosition = `${xPos}px 0`;
-}, 30);
+  if (event.key === 'ArrowRight') {
+    box.style.left = `${rect.left + 10}px`;
+  } else if (event.key === 'ArrowLeft') {
+    box.style.left = `${rect.left - 10}px`;
+  }
+});
 
 let game = document.getElementById("spaceInvader");
 
@@ -21,7 +25,7 @@ function makeSpaceInvader(colonne,divParColonne){
 
     let createCol = document.createElement("div");
 
-    createCol.style.border = 'solid 1px black';
+    createCol.style.border = 'solid 1px white';
     createCol.style.height = `${ValeurColonne}px`;
     createCol.style.display = "flex";
     createCol.setAttribute("class","col")
@@ -35,7 +39,7 @@ function makeSpaceInvader(colonne,divParColonne){
       let divDansColonne = document.createElement("div");
       divDansColonne.style.width = `${ValeurVertical}px`;
       divDansColonne.style.height = `100%`;
-      divDansColonne.style.border = 'solid 1px red';
+      divDansColonne.style.border = 'solid 1px white';
       divDansColonne.setAttribute("class","start")
       createCol.append(divDansColonne);
 
@@ -46,7 +50,7 @@ function makeSpaceInvader(colonne,divParColonne){
         let divDansColonne = document.createElement("div");
         divDansColonne.style.width = `${ValeurVertical}px`;
         divDansColonne.style.height = `100%`;
-        divDansColonne.style.border = 'solid 1px black';
+        divDansColonne.style.border = 'solid 1px white';
         divDansColonne.setAttribute("class","end")
         createCol.append(divDansColonne);
   
@@ -55,7 +59,7 @@ function makeSpaceInvader(colonne,divParColonne){
           let divDansColonne = document.createElement("div");
           divDansColonne.style.width = `${ValeurVertical}px`;
           divDansColonne.style.height = `100%`;
-          divDansColonne.style.border = 'solid 1px black';
+          divDansColonne.style.border = 'solid 1px white';
           createCol.append(divDansColonne);
 
         }
@@ -74,3 +78,10 @@ makeSpaceInvader(10,10);
 
 let doc = document.getElementsByTagName("div");
 console.log(doc);
+const stars = document.querySelector('.stars');
+let xPos = 0;
+
+setInterval(() => {
+  xPos -= 2;
+  stars.style.backgroundPosition = `${xPos}px 0`;
+}, 30);
