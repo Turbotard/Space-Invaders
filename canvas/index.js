@@ -115,3 +115,7 @@ function checkGameOver() {
 // puis on définit une boucle infinie qui va appeller la fonction game toutes les 1000/60 secondes (en gros 60 fois par seconde)
 
 setInterval(game, 1000 / 60);
+
+// musique du jeu
+let audio = new Audio("../audio/musiquefond.mp3");
+audio.play();
