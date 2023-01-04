@@ -159,7 +159,7 @@ export default class EnemyController {
         }
         // on fait ca pour la gauche aussi
         // meme chose mais mtn a gauche
-      } else if (this.currentDirection === MovingDirection.left) {
+      } else if (this.currentDirection === MovingDirection.left) { // si la direction est a gauche
         this.xVelocity = -this.defaultXVelocity;
         this.yVelocity = 0;
         const leftMostEnemy = enemyRow[0];
@@ -212,13 +212,13 @@ export default class EnemyController {
           this.enemyRows[rowIndex].push(
             //TRES DROLE
             // PEUT MOFIER LE NOMBRE ET LA QTT D'ENNEMI
-            new Enemy(enemyIndex * 50, rowIndex * 35, enemyNubmer)
+            new Enemy(enemyIndex * 50, rowIndex * 35, enemyNubmer) 
           );
         }
       });
     });
   }
-
+  
   collideWith(sprite) {
     return this.enemyRows.flat().some((enemy) => enemy.collideWith(sprite));
   }
