@@ -12,11 +12,10 @@ export default class EnemyController {
   // export default est la syntaxe utilisée dans JS pour exporter une valeur ou une classe depuis un module(mtn on peut l'utiliser dans d'autres modules..)
   // on définit mtn une carte d'ennemis sous forme de tableau
   enemyMap = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   ];
   // et il faut définir un tableau qui contiendra les instances de la classe Enemy
 
@@ -64,7 +63,6 @@ export default class EnemyController {
 
   // on vérifie s'il y a collision entre les balles du joueur et les ennemis
   collisionDetection() {
-    
     // et ca pour chaque ligne d'ennemis
     this.enemyRows.forEach((enemyRow) => {
       // pour chaque ennemi dans la ligne
