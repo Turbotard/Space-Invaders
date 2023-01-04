@@ -5,17 +5,53 @@
     color:white;
     flex-direction: column;
     bottom: 0px;
+    margin-bottom: 0%;
 }
 #game{
     z-index: 1;
-    
+    bottom: 0px;
+    margin-bottom: 0%;
+}
+#score{
+    margin-top: 25%;
+    position: absolute;
+    color: white;
+    font-size: 45px;
+    z-index: 1;
 }
 h1 {
     z-index: 1;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
+    margin-bottom: 30px;
+    font-size: 60px;
+    margin-right: 20%;
+    margin-left: 20%;
+    justify-content: space-around;  
+
+    text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #cddc47 0%,
+    #ac80db 29%,
+    #13ff66 67%,
+    #ff00fb 100%
+    );
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    display: inline-block;
+    font-weight: bold;
 }
+@keyframes textclip {
+    to {
+      background-position: 200% center;
+    }
+  }
 .stars {
     background: url('../img/stars.webp');
     height: 100%;
