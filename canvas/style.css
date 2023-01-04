@@ -62,3 +62,16 @@ h1 {
     bottom: 0;
     z-index: 0;
   }
+#foot{
+    display: flex;
+    right: 0px;
+    position: absolute;
+    z-index: 1;
+    bottom: 0px;
+    font-style: Verdana (sans-serif);
+}
+footer{
+    font-size: 14px;
+    color: rgb(123, 123, 123);
+    
+}

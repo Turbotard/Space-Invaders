@@ -31,7 +31,7 @@ setInterval(() => {
 // on créer les instances:
 
 // une instance de BulletController pour les balles du joueur
-const playerBulletController = new BulletController(canvas, 10, "red", true); // --> Pour etre plus precis , cette constante est définie pour contenir une nouvelle instance de la classe "BulletController"
+const playerBulletController = new BulletController(canvas, 20, "red", true); // --> Pour etre plus precis , cette constante est définie pour contenir une nouvelle instance de la classe "BulletController"
 /*
 --> ici "canvas" est un référence au canvas HTML (index.html) dans lequel le jeu est dessiné 
 --> le "10"  est le nombre de balles que le BulletController gère
@@ -39,7 +39,7 @@ const playerBulletController = new BulletController(canvas, 10, "red", true); //
 --> et le "true " indique que ce BulletController gère les balles du joueur.
 */
 // une instance de BulletController pour les balles ennemies
-const enemyBulletController = new BulletController(canvas, 4, "white", false);
+const enemyBulletController = new BulletController(canvas, 3, "white", false);
 // une instance de EnemyController en lui passant les instances de BulletController
 const enemyController = new EnemyController(
   canvas,
