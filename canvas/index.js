@@ -66,19 +66,16 @@ let didWin = false;
 
 
 
-
-
-
-
 // mtn on va devoir définir une FONCTION qui va GÈRER les ACTIONS de chaque images du jeu
+
 function game() {
-  // Vérifie si la première ligne d'ennemis touche le bas du canvas
-  if (enemyController.enemyRows[0].some((enemy) => enemy.y + enemy.height >= canvas.height)) {
+  // Vérifie si la DERNIERE ligne d'ennemis touche le bas du canvas
+  if (enemyController.enemyRows[enemyController.enemyRows.length - 1].some((enemy) => enemy.y + enemy.height >= canvas.height)) {
     // Si c'est le cas, termine la partie et affiche le message de défaite
     isGameOver = true;
-    didWin = false;
+    didWin = false; 
   }
-
+  
   checkGameOver(); // on vérifie si la partie est terminée puis on utilise la methode "drawiImage() " de l'objt ctx (elle va nous permettre de dessiner une image sur un canvas.)
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height); // après on dessine l'image de fond sur le canvas et
   displayGameOver(); // puis on affiche le message de fin de partie si la partie est terminée
@@ -87,15 +84,12 @@ function game() {
     // Vérifier si la dernière ligne d'ennemis touche le bas du canvas
 
 
-
-    
-
   //et SI la partie n'est pas terminée,
   if (!isGameOver) {
     // on dessine les instances de EnemyController, Player, playerBulletController, et enemyBulletController
     enemyController.draw(ctx);
     player.draw(ctx);
-    playerBulletController.draw(ctx);
+    playerBulletController.draw(ctx);  
     enemyBulletController.draw(ctx);
   }
 }
