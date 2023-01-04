@@ -1,6 +1,6 @@
 // ici,on va importer la classe Enemy depuis le fichier Enemy.js + la classe MovingDirection depuis le fichier MovingDirection.js
 import Enemy from "./Enemy.js"; 
-import MovingDirection from "../MovingDirection.js";
+import MovingDirection from "./MovingDirection.js";
 
 // on doit déclarer la classe EnemyController
 export default class EnemyController { // export default est la syntaxe utilisée dans JS pour exporter une valeur ou une classe depuis un module(mtn on peut l'utiliser dans d'autres modules..)

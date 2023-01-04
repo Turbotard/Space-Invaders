@@ -2,7 +2,7 @@
 // ici,on va importer la classe EnemyController depuis le fichier EnemyController.js
 // on fait la meme chose apres pour la classe player et bullets
 import EnemyController from "./EnemyController.js";
-import Player from "../Player.js";
+import Player from "./Player.js";
 import BulletController from "./BulletController.js";
 
 
