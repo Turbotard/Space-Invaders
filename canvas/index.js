@@ -23,7 +23,17 @@ canvas.height = 600;
 //la on va créer une image qui sera utilisée comme fond
 const background = new Image();
 // il ne reste plus qu'a récupèrer l'image à partir de mon fichier "images/space.png"
-background.src = "images/space.png";
+background.src = "../img/planete.jpg";
+
+
+const stars = document.querySelector('.stars');
+let xPos = 0;
+
+setInterval(() => {
+  xPos -= 1;
+  stars.style.backgroundPosition = `${xPos}px 0`;
+}, 30);
+
 
 
 

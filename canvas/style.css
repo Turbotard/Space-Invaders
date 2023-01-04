@@ -1,4 +1,28 @@
-body{
+#center{
     display: flex;
     align-items: center;
+    z-index: 1;
+    color:white;
+    flex-direction: column;
+    bottom: 0px;
 }
+#game{
+    z-index: 1;
+    
+}
+h1 {
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+.stars {
+    background: url('../img/stars.webp');
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 0;
+  }
