@@ -97,11 +97,15 @@ function checkGameOver() {
 
   // SI le joueur est touché par une balle ennemie
   if (enemyBulletController.collideWith(player)) {
+    let ausecour = new Audio("../audio/ausecour.mp3");
+    ausecour.play();
     isGameOver = true; // on va définir la variable de fin de partie sur vrai
   }
 
   // SI le joueur entre en collision avec un ennemi
   if (enemyController.collideWith(player)) {
+    let audio = new Audio("../audio/ausecour.mp3");
+    audio.play();
     isGameOver = true; // on fait le meme -- on définit la variable de fin de partie sur vrai
   }
   // et SI il n'y a plus d'ennemis
