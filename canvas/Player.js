@@ -57,6 +57,9 @@ export default class Player {
     }
     if (event.code == "Space") {
       this.shootPressed = true;
+      let samba = new Audio("../audio/samba.mp3");
+      samba.volume = 0.30
+      samba.play();
     }
   };
 

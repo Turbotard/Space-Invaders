@@ -118,4 +118,5 @@ setInterval(game, 1000 / 60);
 
 // musique du jeu
 let audio = new Audio("../audio/musiquefond.mp3");
+audio.volume = 0.1;
 audio.play();

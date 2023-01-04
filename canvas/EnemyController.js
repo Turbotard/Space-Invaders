@@ -64,6 +64,7 @@ export default class EnemyController {
 
   // on vérifie s'il y a collision entre les balles du joueur et les ennemis
   collisionDetection() {
+    
     // et ca pour chaque ligne d'ennemis
     this.enemyRows.forEach((enemyRow) => {
       // pour chaque ennemi dans la ligne
@@ -71,6 +72,8 @@ export default class EnemyController {
       enemyRow.forEach((enemy, enemyIndex) => {
         // et SI il y a collision entre l'ennemi et une balle du joueur
         if (this.playerBulletController.collideWith(enemy)) {
+          let sambaboom = new Audio("../audio/sambaboom.mp3");
+          sambaboom.play();
           comptage();
           enemyRow.splice(enemyIndex, 1); // on supprime l'ennemi de la ligne
         }
@@ -211,7 +214,7 @@ export default class EnemyController {
           this.enemyRows[rowIndex].push(
             //TRES DROLE
             // PEUT MOFIER LE NOMBRE ET LA QTT D'ENNEMI
-            new Enemy(enemyIndex * 50, rowIndex * 35, enemyNubmer)
+            new Enemy(enemyIndex * 50, rowIndex * 5, enemyNubmer)
           );
         }
       });
