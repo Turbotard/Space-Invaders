@@ -25,7 +25,7 @@ const background = new Image();
 // il ne reste plus qu'a récupèrer l'image à partir de mon fichier "images/space.png"
 background.src = "../img/planete.jpg";
 
-
+// pour deplacer le background 
 const stars = document.querySelector('.stars');
 let xPos = 0;
 
@@ -108,7 +108,7 @@ function checkGameOver() {
   }
 
 // SI le joueur est touché par une balle ennemie
-  if (enemyBulletController.collideWith(player)) {
+  if (enemyBulletController.collideWith(player)) { 
     isGameOver = true; // on va définir la variable de fin de partie sur vrai
 
   }
@@ -124,7 +124,13 @@ function checkGameOver() {
     // et donc on définit la variable de fin de partie sur VRAI
     isGameOver = true;
   }
-}
+  // et si les ennemis ont touché le bas du canvas la partie est perdue
+ 
+
+  }
+
+  
 // puis on définit une boucle infinie qui va appeller la fonction game toutes les 1000/60 secondes (en gros 60 fois par seconde)
 
 setInterval(game, 1000 / 60);
+
