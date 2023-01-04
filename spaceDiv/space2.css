@@ -1,0 +1,16 @@
+#spaceInvader{
+    display: flex;
+    flex-direction: row;
+    /* height: 500px; */
+    width: 540px;
+    border-style: solid;
+    flex-wrap: wrap;
+    margin: auto;
+
+}
+
+.div{
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+}

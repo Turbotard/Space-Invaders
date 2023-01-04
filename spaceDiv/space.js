@@ -39,20 +39,32 @@ function makeSpaceInvader(colonne,divParColonne,alien){
         divDansColonne.setAttribute("class","start")
         createCol.append(divDansColonne);
   
-        }
+        }else if(a == 2){
 
+          let divDansColonne = document.createElement("div");
+          divDansColonne.style.width = `${ValeurVertical}px`;
+          divDansColonne.style.height = `100%`;
+          divDansColonne.style.border = 'solid 1px black';
+          divDansColonne.setAttribute("class","tempo")
+          createCol.append(divDansColonne);
 
-      if(a == divParColonne-1){
+        }else if(a == divParColonne-1){
 
-        let divDansColonne = document.createElement("div");
-        divDansColonne.style.width = `${ValeurVertical}px`;
-        divDansColonne.style.height = `100%`;
-        divDansColonne.style.border = 'solid 1px black';
-        divDansColonne.setAttribute("class","end")
-        createCol.append(divDansColonne);
-  
+          let divDansColonne = document.createElement("div");
+          divDansColonne.style.width = `${ValeurVertical}px`;
+          divDansColonne.style.height = `100%`;
+          divDansColonne.style.border = 'solid 1px black';
+          divDansColonne.setAttribute("class","end")
+          createCol.append(divDansColonne);
+
+        }else if(a == divParColonne-2){
+          let divDansColonne = document.createElement("div");
+          divDansColonne.style.width = `${ValeurVertical}px`;
+          divDansColonne.style.height = `100%`;
+          divDansColonne.style.border = 'solid 1px black';
+          divDansColonne.setAttribute("class","tempo")
+          createCol.append(divDansColonne);
         }else{
-
 
           let divDansColonne = document.createElement("div");
           divDansColonne.style.width = `${ValeurVertical}px`;
@@ -72,16 +84,15 @@ function makeSpaceInvader(colonne,divParColonne,alien){
 
             alienCompteur++
           }
-
         }
 
 
+        }
 
     }
 
   }
 
-}
 
 makeSpaceInvader(10,10,32);
 // makeSpaceInvader(10,10);
