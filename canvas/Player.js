@@ -13,7 +13,7 @@ export default class Player {
     this.width = 50;
     this.height = 48;
     this.image = new Image();
-    this.image.src = "images/player.png";
+    this.image.src = "images/player.jpg";
 
     document.addEventListener("keydown", this.keydown);
     document.addEventListener("keyup", this.keyup);
@@ -57,6 +57,9 @@ export default class Player {
     }
     if (event.code == "Space") {
       this.shootPressed = true;
+      let samba = new Audio("../audio/samba.mp3");
+      samba.volume = 0.3;
+      samba.play();
     }
   };
 
