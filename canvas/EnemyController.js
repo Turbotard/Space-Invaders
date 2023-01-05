@@ -24,10 +24,8 @@ export default class EnemyController {
   // export default est la syntaxe utilisée dans JS pour exporter une valeur ou une classe depuis un module(mtn on peut l'utiliser dans d'autres modules..)
   // on définit mtn une carte d'ennemis sous forme de tableau
   enemyMap1 = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1],
+    
   ];
   enemyMap2 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
