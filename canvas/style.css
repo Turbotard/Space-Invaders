@@ -1,11 +1,19 @@
+header{
+    position: absolute;
+    z-index: 1;
+    background-color: black;
+}
+
+img{
+    height: 50px;
+    width: 50px;
+}
 #center{
     display: flex;
     align-items: center;
     z-index: 1;
     color:white;
     flex-direction: column;
-    bottom: 0px;
-    margin-bottom: 0%;
 }
 #game{
     z-index: 1;
@@ -62,6 +70,14 @@ h1 {
     bottom: 0;
     z-index: 0;
   }
+#level{
+    position: relative;
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+    width: 100px;
+}
 #foot{
     display: flex;
     right: 0px;

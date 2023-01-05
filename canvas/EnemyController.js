@@ -1,6 +1,8 @@
 // ici,on va importer la classe Enemy depuis le fichier Enemy.js + la classe MovingDirection depuis le fichier MovingDirection.js
 import Enemy from "./Enemy.js";
 import MovingDirection from "./MovingDirection.js";
+const buttonValue = localStorage.getItem('buttonValue');
+
 var score = 0;
 
 function comptage() {
@@ -11,12 +13,25 @@ function comptage() {
 export default class EnemyController {
   // export default est la syntaxe utilisée dans JS pour exporter une valeur ou une classe depuis un module(mtn on peut l'utiliser dans d'autres modules..)
   // on définit mtn une carte d'ennemis sous forme de tableau
-  enemyMap = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  enemyMap1 = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   ];
+  enemyMap2 = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  ];
+  enemyMap3 = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  ];
+  enemyMap = [this.enemyMap1,this.enemyMap2,this.enemyMap3];
   // et il faut définir un tableau qui contiendra les instances de la classe Enemy
 
   enemyRows = [];
@@ -159,7 +174,8 @@ export default class EnemyController {
         }
         // on fait ca pour la gauche aussi
         // meme chose mais mtn a gauche
-      } else if (this.currentDirection === MovingDirection.left) { // si la direction est a gauche
+      } else if (this.currentDirection === MovingDirection.left) {
+        // si la direction est a gauche
         this.xVelocity = -this.defaultXVelocity;
         this.yVelocity = 0;
         const leftMostEnemy = enemyRow[0];
@@ -200,7 +216,7 @@ export default class EnemyController {
 
   // mtn on créer les ennemis à partir de la map d'ennemis
   createEnemies() {
-    this.enemyMap.forEach((row, rowIndex) => {
+    this.enemyMap[buttonValue-1].forEach((row, rowIndex) => {
       //tableau + position index
       this.enemyRows[rowIndex] = []; // on la créer pr pouvoir plus tard stocker les ennemis de chaque lignes
       row.forEach((enemyNubmer, enemyIndex) => {
@@ -212,13 +228,13 @@ export default class EnemyController {
           this.enemyRows[rowIndex].push(
             //TRES DROLE
             // PEUT MOFIER LE NOMBRE ET LA QTT D'ENNEMI
-            new Enemy(enemyIndex * 50, rowIndex * 35, enemyNubmer) 
+            new Enemy(enemyIndex * 50, rowIndex * 35, enemyNubmer)
           );
         }
       });
     });
   }
-  
+
   collideWith(sprite) {
     return this.enemyRows.flat().some((enemy) => enemy.collideWith(sprite));
   }

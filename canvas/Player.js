@@ -53,11 +53,19 @@ export default class Player {
   move() {// on définit une fonction pour déplacer le joueur
     if (this.rightPressed) {// si la touche droite est enfoncée
       this.x += this.velocity;//  on ajoute la vitesse à la position X du joueur
-    } else if (this.leftPressed) {//si la touche gauche est enfoncée
+    }if (this.leftPressed) {//si la touche gauche est enfoncée
       this.x += -this.velocity;// on ajoute la vitesse à la position X du joueur
 
     }
   }
+
+
+
+
+
+
+
+
 
   keydown = (event) => {
     if (event.code == "ArrowRight") {
