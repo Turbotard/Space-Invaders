@@ -1,5 +1,7 @@
 // on définit la classe Player
 export default class Player {
+  upPressed = false;// on définit une variable pour savoir si la touche haut est enfoncée ou non
+  downPressed = false;// on définit une variable pour savoir si la touche bas est enfoncée ou non
   rightPressed = false;// on définit une variable pour savoir si la touche droite est enfoncée ou non
   leftPressed = false;// la meme mais pr la gauche
   shootPressed = false; // la meme mais pr le tir(espace)
@@ -33,7 +35,7 @@ export default class Player {
       this.bulletController.shoot(this.x + this.width / 2, this.y, 5, 10);// on tire une balle
     }
     
-    this.move();// on déplace le joueur
+    this.toMove();// on déplace le joueur
     this.touchCanvasBorder();// on vérifie si le joueur touche LES COTÉS du canvas
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
@@ -48,14 +50,29 @@ export default class Player {
     if (this.x > this.canvas.width - this.width) {// si la position X du joueur est supérieur à la largeur du canvas - la largeur du joueur
       this.x = this.canvas.width - this.width;// on définit la position X du joueur à la largeur du canvas - la largeur du joueur
     }
+    //haut
+    if (this.y < 0) {// si la position Y du joueur est inférieur à 0
+      this.y = 0;// on définit la position Y du joueur à 0
+    }
+    //bas
+    if (this.y > this.canvas.height - this.height) {// si la position Y du joueur est supérieur à la hauteur du canvas - la hauteur du joueur
+      this.y = this.canvas.height - this.height;// on définit la position Y du joueur à la hauteur du canvas - la hauteur du joueur  
   }
+}
+  
 
-  move() {// on définit une fonction pour déplacer le joueur
+  toMove() {// on définit une fonction pour déplacer le joueur
     if (this.rightPressed) {// si la touche droite est enfoncée
       this.x += this.velocity;//  on ajoute la vitesse à la position X du joueur
     }if (this.leftPressed) {//si la touche gauche est enfoncée
       this.x += -this.velocity;// on ajoute la vitesse à la position X du joueur
 
+    }
+    if (this.upPressed) {
+      this.y += -this.velocity;
+    }
+    if (this.downPressed) {
+      this.y += this.velocity;
     }
   }
 
@@ -80,6 +97,12 @@ export default class Player {
       samba.volume = 0.3;
       samba.play();
     }
+    if (event.code == "ArrowUp") {
+      this.upPressed = true;
+    }
+    if (event.code == "ArrowDown") {
+      this.downPressed = true;
+    }
   };
 
   keyup = (event) => {
@@ -91,6 +114,12 @@ export default class Player {
     }
     if (event.code == "Space") {
       this.shootPressed = false;
+    }
+    if (event.code == "ArrowUp") {
+      this.upPressed = false;
+    }
+    if (event.code == "ArrowDown") {
+      this.downPressed = false;
     }
   };
 }
