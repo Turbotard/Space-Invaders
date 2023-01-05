@@ -4,23 +4,23 @@ import EnemyController from "./EnemyController.js";
 import Player from "./Player.js";
 import BulletController from "./BulletController.js";
 
-// mtn on va récupèrer l'élément canvas avec l'id "game"
-const canvas = document.getElementById("game"); //(c'est + rapide avec getElementById)
 
+
+// mtn on va RECUPERER l'élément canvas avec l'id "game"
+const canvas = document.getElementById("game"); //(c'est + rapide avec getElementById)
 // ensuite on crée un contexte de dessin pour le canvas
 const ctx = canvas.getContext("2d");
-
-//on définit une largeur ici sur 600
+//on définit une largeur ici sur 700
 canvas.width = 700;
 //puis on donne la hauteur
 canvas.height = 600;
-
 //la on va créer une image qui sera utilisée comme fond
 const background = new Image();
-// il ne reste plus qu'a récupèrer l'image à partir de mon fichier "images/space.png"
+// il ne reste plus qu'a récupèrer l'image à partir de mon fichier "../images/space.png"
 background.src = "../img/planete.jpg";
 
-const stars = document.querySelector(".stars");
+// on va créer une constante pour les étoiles
+const stars = document.querySelector(".stars"); // on va utiliser querySelector pour récupèrer l'élément avec la classe "stars"
 let xPos = 0;
 
 setInterval(() => {
@@ -35,7 +35,6 @@ setInterval(() => {
 
 
 // on créer les instances:
-
 // une instance de BulletController pour les balles du joueur
 const playerBulletController = new BulletController(canvas, 20, "red", true); // --> Pour etre plus precis , cette constante est définie pour contenir une nouvelle instance de la classe "BulletController"
 /*
