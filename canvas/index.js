@@ -95,13 +95,20 @@ function game() {
 
 
 
-
-
-
+let score = localStorage.getItem("score")
+let highscore = localStorage.getItem("highscore");
+function updateHighScore(newscore){
+      if(newscore > highscore){
+          highscore = newscore;
+          localStorage.setItem("highscore", highscore)
+      }
+      document.getElementById("score3").textContent = highscore
+}
 // ensuite on définit une fonction qui AFFICHE le MESSAGE de fin de partie
 
 function displayGameOver() {
   if (isGameOver) {
+    updateHighScore(score);
     // il faut qu'on définisse le texte du message en fonction de si le joueur a gagné ou non
     let text = didWin ? "You Win !" : "Game Over !";
 

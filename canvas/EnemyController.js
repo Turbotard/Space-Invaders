@@ -1,12 +1,13 @@
 // ici,on va importer la classe Enemy depuis le fichier Enemy.js + la classe MovingDirection depuis le fichier MovingDirection.js
 import Enemy from "./Enemy.js";
 import MovingDirection from "./MovingDirection.js";
-const buttonValue = localStorage.getItem('buttonValue');
+const buttonValue = localStorage.getItem("buttonValue");
 
 var score = 0;
 
 function comptage() {
   score += 100;
+  localStorage.setItem("score", score)
   document.getElementById("score1").textContent = score;
 }
 // on doit déclarer la classe EnemyController
@@ -26,12 +27,12 @@ export default class EnemyController {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   ];
   enemyMap3 = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   ];
-  enemyMap = [this.enemyMap1,this.enemyMap2,this.enemyMap3];
+  enemyMap = [this.enemyMap1, this.enemyMap2, this.enemyMap3];
   // et il faut définir un tableau qui contiendra les instances de la classe Enemy
 
   enemyRows = [];
@@ -216,7 +217,7 @@ export default class EnemyController {
 
   // mtn on créer les ennemis à partir de la map d'ennemis
   createEnemies() {
-    this.enemyMap[buttonValue-1].forEach((row, rowIndex) => {
+    this.enemyMap[buttonValue - 1].forEach((row, rowIndex) => {
       //tableau + position index
       this.enemyRows[rowIndex] = []; // on la créer pr pouvoir plus tard stocker les ennemis de chaque lignes
       row.forEach((enemyNubmer, enemyIndex) => {
