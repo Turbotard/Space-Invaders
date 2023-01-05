@@ -62,6 +62,7 @@ let didWin = false;
 // mtn on va devoir définir une FONCTION qui va GÈRER les ACTIONS de chaque images du jeu
 
 function game() {
+  
   checkGameOver(); // on vérifie si la partie est terminée puis on utilise la methode "drawiImage() " de l'objt ctx (elle va nous permettre de dessiner une image sur un canvas.)
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);// après on dessine l'image de fond sur le canvas et 
 
@@ -117,6 +118,7 @@ function checkGameOver() {
   if (enemyController.collideWith(player)) {
     isGameOver = true; // on fait le meme -- on définit la variable de fin de partie sur vrai
   }
+  
 // et SI il n'y a plus d'ennemis
 
   if (enemyController.enemyRows.length === 0) {
@@ -124,6 +126,16 @@ function checkGameOver() {
     // et donc on définit la variable de fin de partie sur VRAI
     isGameOver = true;
   }
+  if (
+    enemyController.enemyRows[enemyController.enemyRows.length - 1].some(
+      (enemy) => enemy.y + enemy.height >= canvas.height
+    )
+  ) {
+    // Si c'est le cas, termine la partie et affiche le message de défaite
+    isGameOver = true;
+    didWin = false;
+  }
+
 }
 
 
