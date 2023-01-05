@@ -85,17 +85,14 @@ function game() {
 
 function displayGameOver() {
   if (isGameOver) {
-    // il faut qu'on définisse le texte du message en fonction de si le joueur a gagné ou non
-    let text = didWin ? "You Win" : "Game Over";
-
-    //la on définit un décalage pour le texte en fonction de si le joueur a gagné ou non
-    let textOffset = didWin ? 3.5 : 5;
-//un peu de style mais si je sais il faut pas le mettre ici : ca marche, c'est + rapide et + simple 
+    let gameOverMessage = "Game Over!";
+    if (didWin) {
+      gameOverMessage = "You Win!";
+    }
+    ctx.font = "30px Arial";
     ctx.fillStyle = "white";
-    ctx.font = "70px Arial";
-
-    // et mtn on dessine le texte sur le canvas avec un décalage calculé
-    ctx.fillText(text, canvas.width / textOffset, canvas.height / 2);
+    ctx.textAlign = "center";
+    ctx.fillText(gameOverMessage, canvas.width / 2, canvas.height / 2);
   }
 }
 
