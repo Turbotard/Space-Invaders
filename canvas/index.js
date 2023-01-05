@@ -4,8 +4,6 @@ import EnemyController from "./EnemyController.js";
 import Player from "./Player.js";
 import BulletController from "./BulletController.js";
 
-
-
 // mtn on va RECUPERER l'élément canvas avec l'id "game"
 const canvas = document.getElementById("game"); //(c'est + rapide avec getElementById)
 // ensuite on crée un contexte de dessin pour le canvas
@@ -27,12 +25,6 @@ setInterval(() => {
   xPos -= 1;
   stars.style.backgroundPosition = `${xPos}px 0`;
 }, 30);
-
-
-
-
-
-
 
 // on créer les instances:
 // une instance de BulletController pour les balles du joueur
@@ -59,56 +51,40 @@ let isGameOver = false;
 // et la si il a gagné ou pas
 let didWin = false;
 
-
-
-
-
-
-
 // mtn on va devoir définir une FONCTION qui va GÈRER les ACTIONS de chaque images du jeu
 
 function game() {
   // Vérifie si la DERNIERE ligne d'ennemis touche le bas du canvas
-  if (enemyController.enemyRows[enemyController.enemyRows.length - 1].some((enemy) => enemy.y + enemy.height >= canvas.height)) {
+  if (
+    enemyController.enemyRows[enemyController.enemyRows.length - 1].some(
+      (enemy) => enemy.y + enemy.height >= canvas.height
+    )
+  ) {
     // Si c'est le cas, termine la partie et affiche le message de défaite
     isGameOver = true;
-    didWin = false; 
+    didWin = false;
   }
-  
+
   checkGameOver(); // on vérifie si la partie est terminée puis on utilise la methode "drawiImage() " de l'objt ctx (elle va nous permettre de dessiner une image sur un canvas.)
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height); // après on dessine l'image de fond sur le canvas et
   displayGameOver(); // puis on affiche le message de fin de partie si la partie est terminée
 
-
-    // Vérifier si la dernière ligne d'ennemis touche le bas du canvas
-
+  // Vérifier si la dernière ligne d'ennemis touche le bas du canvas
 
   //et SI la partie n'est pas terminée,
   if (!isGameOver) {
     // on dessine les instances de EnemyController, Player, playerBulletController, et enemyBulletController
     enemyController.draw(ctx);
     player.draw(ctx);
-    playerBulletController.draw(ctx);  
+    playerBulletController.draw(ctx);
     enemyBulletController.draw(ctx);
   }
 }
 
-
-
-let score = localStorage.getItem("score")
-let highscore = localStorage.getItem("highscore");
-function updateHighScore(newscore){
-      if(newscore > highscore){
-          highscore = newscore;
-          localStorage.setItem("highscore", highscore)
-      }
-      document.getElementById("score3").textContent = highscore
-}
 // ensuite on définit une fonction qui AFFICHE le MESSAGE de fin de partie
 
 function displayGameOver() {
   if (isGameOver) {
-    updateHighScore(score);
     // il faut qu'on définisse le texte du message en fonction de si le joueur a gagné ou non
     let text = didWin ? "You Win !" : "Game Over !";
 
@@ -150,11 +126,8 @@ function checkGameOver() {
     isGameOver = true;
   }
   // et si les ennemis ont touché le bas du canvas la partie est perdue
- 
+}
 
-  }
-
-  
 // puis on définit une boucle infinie qui va appeller la fonction game toutes les 1000/60 secondes (en gros 60 fois par seconde)
 
 setInterval(game, 1000 / 60);

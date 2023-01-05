@@ -10,6 +10,15 @@ function comptage() {
   localStorage.setItem("score", score)
   document.getElementById("score1").textContent = score;
 }
+let highscore = localStorage.getItem("highscore");
+function updateHighScore(newscore) {
+  if (newscore > highscore) {
+    highscore = newscore;
+    localStorage.setItem("highscore", highscore);
+    highscore = localStorage.getItem('highscore')
+  }
+  document.getElementById("score3").textContent = highscore;
+}
 // on doit déclarer la classe EnemyController
 export default class EnemyController {
   // export default est la syntaxe utilisée dans JS pour exporter une valeur ou une classe depuis un module(mtn on peut l'utiliser dans d'autres modules..)
@@ -89,6 +98,7 @@ export default class EnemyController {
           let sambaboom = new Audio("../audio/sambaboom.mp3");
           sambaboom.play();
           comptage();
+          updateHighScore(score);
           enemyRow.splice(enemyIndex, 1); // on supprime l'ennemi de la ligne
         }
       });
@@ -241,3 +251,5 @@ export default class EnemyController {
   }
 }
 //wallah ça marche (benj)
+document.getElementById("score3").textContent = highscore;
+
