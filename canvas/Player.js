@@ -33,7 +33,7 @@ export default class Player {
       this.bulletController.shoot(this.x + this.width / 2, this.y, 5, 10);// on tire une balle
     }
     
-    this.move();// on déplace le joueur
+    this.toMove();// on déplace le joueur
     this.touchCanvasBorder();// on vérifie si le joueur touche LES COTÉS du canvas
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
@@ -50,7 +50,7 @@ export default class Player {
     }
   }
 
-  move() {// on définit une fonction pour déplacer le joueur
+  toMove() {// on définit une fonction pour déplacer le joueur
     if (this.rightPressed) {// si la touche droite est enfoncée
       this.x += this.velocity;//  on ajoute la vitesse à la position X du joueur
     }if (this.leftPressed) {//si la touche gauche est enfoncée
