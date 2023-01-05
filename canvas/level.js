@@ -15,3 +15,4 @@ footer.addEventListener('click', function() {
 let audio2 = new Audio("../audio/acceuil.mp3");
 audio2.volume = 0.09;
 audio2.play();
+
