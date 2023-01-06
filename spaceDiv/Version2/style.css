@@ -35,7 +35,7 @@ h3 {
     background-size: contain;
 }
 .alien {
-    background: url(ressources/ennemies.png);
+    background: url(../../img/alien.jpg);
     background-position: center;
     background-size: contain;
 }

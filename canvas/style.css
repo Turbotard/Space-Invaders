@@ -16,6 +16,11 @@ img{
     color:white;
     flex-direction: column;
 }
+
+#center h1{
+    text-align: center;
+}
+
 #game{
     z-index: 1;
     bottom: 0px;
@@ -81,11 +86,13 @@ h1 {
   }
 #level{
     position: relative;
+    display: flex;
+    justify-content: space-between;
     z-index: 1;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 200px;
-    width: 100px;
+    margin-top: 70px;
+    width: 60%;
 }
 #foot{
     display: flex;
@@ -102,4 +109,58 @@ footer{
 }
 button{
     cursor: pointer;
+    width: 25%;
+    height: 130px;
+    word-wrap: break-word;
+    z-index: 2;
+    
+    
+}
+
+#btn1{
+    /* background-image: url("./images/space-invaders-vert.webp");
+    background-size: 100% 100%;
+    background-repeat: no-repeat; */
+    background-color: green;
+    border-radius: 10px;
+}
+
+#btn3{
+
+    background-image: url(./images/palpatine.webp);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    z-index: 2;
+
+}
+
+
+#fauxMortDroite{
+    display: block;
+    z-index:1;
+    position:absolute;
+    right:-70px;
+    top:-112px;
+    height:250px;
+    width:250px;
+    /* transform: scaleX(-1); */
+}
+
+#fauxMortGauche{
+    display: block;
+    z-index:1;
+    position:absolute;
+    right: 20px;
+    top:-112px;
+    height:250px;
+    width:250px;
+    transform: scaleX(-1);
+}
+
+#pDifficile{
+    font-family:'Rubik Bubbles', cursive;
+    font-size: 40px;
+    color: red;
+    position: relative;
+    top: 110px;
 }

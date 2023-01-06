@@ -8,6 +8,10 @@
 
 }
 
+.col{
+  justify-content: center;
+}
+
 #gameCenter{
     display: flex;
     justify-content: center;
@@ -29,7 +33,8 @@
   }
 
   .alien{
-    background-image: url("/img/alien.jpg");
+    background-image: url("../img/alien.jpg");
+    background-size: cover;
     
   }
 

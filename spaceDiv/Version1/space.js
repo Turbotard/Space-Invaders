@@ -12,9 +12,9 @@ let largeurGame = game.offsetWidth;
 let hauteurGame = game.offsetHeight;
 
 
-function makeSpaceInvader(colonne,divParColonne,alien){
+function makeSpaceInvader(colonne,divParColonne){
 
-  let alienCompteur = 0; 
+
   ValeurVertical = largeurGame/divParColonne;
   ValeurColonne= hauteurGame/colonne;
 
@@ -39,16 +39,18 @@ function makeSpaceInvader(colonne,divParColonne,alien){
         divDansColonne.setAttribute("class","start")
         createCol.append(divDansColonne);
   
-        }else if(a == 2){
+        }
+        // else if(a == 2){
 
-          let divDansColonne = document.createElement("div");
-          divDansColonne.style.width = `${ValeurVertical}px`;
-          divDansColonne.style.height = `100%`;
-          divDansColonne.style.border = 'solid 1px black';
-          divDansColonne.setAttribute("class","tempo")
-          createCol.append(divDansColonne);
+        //   let divDansColonne = document.createElement("div");
+        //   divDansColonne.style.width = `${ValeurVertical}px`;
+        //   divDansColonne.style.height = `100%`;
+        //   divDansColonne.style.border = 'solid 1px black';
+        //   divDansColonne.setAttribute("class","tempo")
+        //   createCol.append(divDansColonne);
 
-        }else if(a == divParColonne-1){
+        // }
+        else if(a == divParColonne-1){
 
           let divDansColonne = document.createElement("div");
           divDansColonne.style.width = `${ValeurVertical}px`;
@@ -57,14 +59,16 @@ function makeSpaceInvader(colonne,divParColonne,alien){
           divDansColonne.setAttribute("class","end")
           createCol.append(divDansColonne);
 
-        }else if(a == divParColonne-2){
-          let divDansColonne = document.createElement("div");
-          divDansColonne.style.width = `${ValeurVertical}px`;
-          divDansColonne.style.height = `100%`;
-          divDansColonne.style.border = 'solid 1px black';
-          divDansColonne.setAttribute("class","tempo")
-          createCol.append(divDansColonne);
-        }else{
+        }
+        // else if(a == divParColonne-2){
+        //   let divDansColonne = document.createElement("div");
+        //   divDansColonne.style.width = `${ValeurVertical}px`;
+        //   divDansColonne.style.height = `100%`;
+        //   divDansColonne.style.border = 'solid 1px black';
+        //   divDansColonne.setAttribute("class","tempo")
+        //   createCol.append(divDansColonne);
+        // }
+        else{
 
           let divDansColonne = document.createElement("div");
           divDansColonne.style.width = `${ValeurVertical}px`;
@@ -73,28 +77,37 @@ function makeSpaceInvader(colonne,divParColonne,alien){
           divDansColonne.setAttribute("class","potentiel");
           createCol.append(divDansColonne);
           
-          if(alienCompteur < alien){
+          // if(alienCompteur < alien){
 
-            console.log(alienCompteur);
-            let cl = document.getElementsByClassName("potentiel");
-            let change = cl[alienCompteur]
-            change.style.backgroundImage = "url('/img/alien.jpg')";
-            change.style.backgroundSize = "cover";
-            console.log(change);
+          //   console.log(alienCompteur);
+          //   let cl = document.getElementsByClassName("potentiel");
+          //   let change = cl[alienCompteur]
+          //   change.style.backgroundImage = "url('/img/alien.jpg')";
+          //   change.style.backgroundSize = "cover";
+          //   console.log(change);
 
-            alienCompteur++
-          }
+          //   alienCompteur++
+          // }
         }
 
 
         }
 
     }
+    
+  }
 
+  function mobPlacement(alien,surCombienDeColonne,espacement){
+
+      for(i=0; i<surCombienDeColonne;i++){
+
+        let colonne = document.getElementsByClassName[i];
+
+      }
   }
 
 
-makeSpaceInvader(10,10,32);
+makeSpaceInvader(20,20,20);
 // makeSpaceInvader(10,10);
 
 
