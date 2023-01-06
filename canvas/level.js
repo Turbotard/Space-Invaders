@@ -13,7 +13,7 @@ footer.addEventListener('click', function() {
 });
 
 let audio2 = new Audio("../audio/acceuil.mp3");
-audio2.volume = 0.09;
+audio2.volume = 0.07;
 audio2.play();
 // on va créer une constante pour les étoiles
 const stars = document.querySelector(".stars"); // on va utiliser querySelector pour récupèrer l'élément avec la classe "stars"
