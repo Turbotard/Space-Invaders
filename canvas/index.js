@@ -95,8 +95,8 @@ function displayGameOver() {
     if (didWin) {
       gameOverMessage = "You Win !";
     }
-    ctx.font = "60px roboto";
-    ctx.fillStyle = "white";
+    ctx.font = "60px 'RedFive', sans-serif";
+    ctx.fillStyle = "#ffe436";
     ctx.textAlign = "center";
     ctx.fillText(gameOverMessage, canvas.width / 2, canvas.height / 2);
   }
