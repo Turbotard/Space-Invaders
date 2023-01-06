@@ -10,15 +10,24 @@ function comptage() {
   localStorage.setItem("score", score);
   document.getElementById("score1").textContent = score;
 }
-let highscore = localStorage.getItem("highscore");
+let highscore = localStorage.getItem("highScore");
 function updateHighScore(newscore) {
   if (newscore > highscore) {
     highscore = newscore;
-    localStorage.setItem("highscore", highscore);
-    highscore = localStorage.getItem("highscore");
+    localStorage.setItem("highScore", highscore);
+    highscore = localStorage.getItem("highScore");
   }
   document.getElementById("score3").textContent = highscore;
 }
+const clearButton = document.getElementById('reset');
+
+clearButton.addEventListener('click', function() {
+  localStorage.removeItem('highScore');
+  highscore = 0;
+  localStorage.setItem('highScore', highscore);
+  document.getElementById("score3").textContent = highscore;
+});
+
 // on doit déclarer la classe EnemyController
 export default class EnemyController {
   // export default est la syntaxe utilisée dans JS pour exporter une valeur ou une classe depuis un module(mtn on peut l'utiliser dans d'autres modules..)

@@ -22,14 +22,14 @@ img{
     margin-bottom: 0%;
 }
 #score{
-    margin-top: 20%;
+    margin-top: 15%;
     position: absolute;
     color: white;
     font-size: 45px;
     z-index: 1;
 }
 #score2{
-    margin-top: 30%;
+    margin-top: 22%;
     position: absolute;
     color: white;
     font-size: 45px;
@@ -102,4 +102,9 @@ footer{
 }
 button{
     cursor: pointer;
+}
+#reset{
+    margin-top: 35%;
+    position: absolute;
+    z-index: 1;
 }
