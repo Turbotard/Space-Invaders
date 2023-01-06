@@ -17,7 +17,8 @@ const background = new Image();
 // il ne reste plus qu'a récupèrer l'image à partir de mon fichier "../images/space.png"
 background.src = "../img/background1.jpg";
 const refreshButton = document.getElementById('replay');
-
+  //mon bouton est invisible jusqu'a ce que la partie soit terminée
+ 
 refreshButton.addEventListener('click', function() {
   location.reload();
 });
@@ -91,6 +92,8 @@ function game() {
 
 function displayGameOver() {
   if (isGameOver) {
+    let replay = document.getElementById('replay');
+    replay.style.visibility = "visible";
     let gameOverMessage = "Game Over !";
     if (didWin) {
       gameOverMessage = "You Win !";
