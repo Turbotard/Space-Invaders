@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/death-star');
+@import url('https://fonts.cdnfonts.com/css/redfive');
 header{
     position: absolute;
     z-index: 1;
@@ -27,17 +29,21 @@ img{
     margin-bottom: 0%;
 }
 #score{
+    font-family: 'RedFive', sans-serif;
+                                                
     margin-top: 15%;
     position: absolute;
     color: white;
-    font-size: 45px;
+    font-size: 30px;
     z-index: 1;
 }
 #score2{
+    font-family: 'RedFive', sans-serif;
+                                                
     margin-top: 22%;
     position: absolute;
     color: white;
-    font-size: 45px;
+    font-size: 30px;
     z-index: 1;
 }
 #reset{
@@ -47,10 +53,12 @@ img{
     background-color: #8c00ff; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 20px 32px;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-family: 'RedFive', sans-serif;
+
+    font-size: 20px;
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -59,16 +67,18 @@ img{
     box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 #replay{
-    margin-top: 40%;
+    margin-top: 42%;
     position: absolute;
     z-index: 1;
     background-color: #8c00ff; /* Green */
     border: none;
     color: white;
-    padding: 15px 68px;
+    padding: 20px 100px;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-family: 'RedFive', sans-serif;
+
+    font-size: 20px;
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -83,7 +93,8 @@ h1 {
     margin-right: 20%;
     margin-left: 20%;
     justify-content: space-around;  
-
+    font-family: 'Death Star', sans-serif;
+                                                
     text-transform: uppercase;
   background-image: linear-gradient(
     -225deg,
