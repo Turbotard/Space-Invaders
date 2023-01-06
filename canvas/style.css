@@ -107,4 +107,35 @@ button{
     margin-top: 35%;
     position: absolute;
     z-index: 1;
+    background-color: #8c00ff; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+#reset:hover{
+    box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+#replay{
+    margin-top: 40%;
+    position: absolute;
+    z-index: 1;
+    background-color: #8c00ff; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 68px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+#replay:hover{
+    box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

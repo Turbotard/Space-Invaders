@@ -16,6 +16,11 @@ canvas.height = 600;
 const background = new Image();
 // il ne reste plus qu'a récupèrer l'image à partir de mon fichier "../images/space.png"
 background.src = "../img/planete.jpg";
+const refreshButton = document.getElementById('replay');
+
+refreshButton.addEventListener('click', function() {
+  location.reload();
+});
 
 // on va créer une constante pour les étoiles
 const stars = document.querySelector(".stars"); // on va utiliser querySelector pour récupèrer l'élément avec la classe "stars"
