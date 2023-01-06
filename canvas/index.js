@@ -15,7 +15,12 @@ canvas.height = 600;
 //la on va créer une image qui sera utilisée comme fond
 const background = new Image();
 // il ne reste plus qu'a récupèrer l'image à partir de mon fichier "../images/space.png"
-background.src = "../img/planete.jpg";
+background.src = "../img/background1.jpg";
+const refreshButton = document.getElementById('replay');
+
+refreshButton.addEventListener('click', function() {
+  location.reload();
+});
 
 // on va créer une constante pour les étoiles
 const stars = document.querySelector(".stars"); // on va utiliser querySelector pour récupèrer l'élément avec la classe "stars"
@@ -36,7 +41,7 @@ const playerBulletController = new BulletController(canvas, 20, "red", true); //
 --> et le "true " indique que ce BulletController gère les balles du joueur.
 */
 // une instance de BulletController pour les balles ennemies
-const enemyBulletController = new BulletController(canvas, 3, "white", false);
+const enemyBulletController = new BulletController(canvas, 3, "	#00FF00", false);
 // une instance de EnemyController en lui passant les instances de BulletController
 const enemyController = new EnemyController(
   canvas,

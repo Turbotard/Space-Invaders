@@ -21,7 +21,7 @@ export default class Player {
     this.height = 48;// on définit la hauteur du joueur
     this.width = 70;// on définit la largeur du joueur
     this.image = new Image(); // on définit une nouvelle img (mon joueur)
-    this.image.src = "images/player.png";
+    this.image.src = "images/player1.png";
     
     document.addEventListener("keydown", this.keydown);// on définit une variable pour savoir si la touche droite est enfoncée ou non
     document.addEventListener("keyup", this.keyup);// on définit une variable pour savoir si la touche gauche est enfoncée ou non
