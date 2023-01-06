@@ -40,7 +40,42 @@ img{
     font-size: 45px;
     z-index: 1;
 }
-
+#reset{
+    margin-top: 35%;
+    position: absolute;
+    z-index: 1;
+    background-color: #8c00ff; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+#reset:hover{
+    box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+#replay{
+    margin-top: 40%;
+    position: absolute;
+    z-index: 1;
+    background-color: #8c00ff; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 68px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+#replay:hover{
+    box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 h1 {
     z-index: 1;
     margin-bottom: 30px;
@@ -109,8 +144,6 @@ footer{
 }
 button{
     cursor: pointer;
-    width: 25%;
-    height: 130px;
     word-wrap: break-word;
     z-index: 2;
     
@@ -121,11 +154,19 @@ button{
     /* background-image: url("./images/space-invaders-vert.webp");
     background-size: 100% 100%;
     background-repeat: no-repeat; */
+    width: 25%;
+    height: 130px;
     background-color: green;
     border-radius: 10px;
 }
+#btn2{
+    width: 25%;
+    height: 130px;
+}
 
 #btn3{
+    width: 25%;
+    height: 130px;
 
     background-image: url(./images/palpatine.webp);
     background-size: 100% 100%;
