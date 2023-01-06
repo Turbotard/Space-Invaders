@@ -91,11 +91,11 @@ function game() {
 
 function displayGameOver() {
   if (isGameOver) {
-    let gameOverMessage = "Game Over!";
+    let gameOverMessage = "Game Over !";
     if (didWin) {
-      gameOverMessage = "You Win!";
+      gameOverMessage = "You Win !";
     }
-    ctx.font = "30px Arial";
+    ctx.font = "60px roboto";
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.fillText(gameOverMessage, canvas.width / 2, canvas.height / 2);
