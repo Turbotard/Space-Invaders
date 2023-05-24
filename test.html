@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+// Ce code a été réalisé entièrement et uniquement par chatgpt
+<html>
+    <head>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: #000;
+                color: #fff;
+                font-family: 'Arial', sans-serif;
+            }
+
+            #gameCanvas {
+                background: #111;
+                border: 3px solid #fff;
+            }
+
+            #retryButton {
+                margin-top: 20px;
+                padding: 10px 20px;
+                font-size: 20px;
+                color: #fff;
+                background: #f00;
+                border: none;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+            <button id="retryButton" style="display: none;">Replay</button>
+        </div>
+        <script>
+            const canvas = document.getElementById('gameCanvas');
+            const context = canvas.getContext('2d');
+            const retryButton = document.getElementById('retryButton');
+
+            let player;
+            let aliens;
+            let bullets;
+            let direction;
+            let keys;
+            let gameOver;
+            let lastFired;
+            const fireRate = 300;  // Time in milliseconds between shots
+
+            const bulletWidth = 5;
+            const bulletHeight = 10;
+
+            function init() {
+                player = { x: canvas.width / 2, y: canvas.height - 50, width: 50, height: 50 };
+                aliens = [];
+                bullets = [];
+                const alienRows = 5;
+                const alienColumns = 10;
+                const alienWidth = 40;
+                const alienHeight = 30;
+                direction = 1;
+                keys = { ArrowLeft: false, ArrowRight: false, Space: false };
+                gameOver = false;
+
+                for (let i = 0; i < alienRows; i++) {
+                    for (let j = 0; j < alienColumns; j++) {
+                        aliens.push({ x: 10 + j * 50, y: 10 + i * 40, width: alienWidth, height: alienHeight });
+                    }
+                }
+
+                retryButton.style.display = 'none';
+                lastFired = 0;
+
+                update();
+            }
+
+            function update() {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                context.fillStyle = '#0f0';
+                context.fillRect(player.x, player.y, player.width, player.height);
+
+                let edge = false;
+                aliens.forEach(function(alien) {
+                    // Reduce the value added to alien.x to slow down the aliens
+                    alien.x += 3 * direction;
+                    if (alien.x < 0 || alien.x > canvas.width - alien.width) {
+                        edge = true;
+                    }
+                });
+
+                if (edge) {
+                    direction *= -1;
+                    aliens.forEach(function(alien) {
+                        alien.y += alien.height;
+                    });
+                }
+
+                context.fillStyle = '#f00';
+                aliens.forEach(function(alien) {
+                    context.fillRect(alien.x, alien.y, alien.width, alien.height);
+                });
+
+                context.fillStyle = '#0ff';
+                bullets.forEach(function(bullet) {
+                    context.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+                });
+
+                bullets.forEach(function(bullet, bulletIndex) {
+                    bullet.y -= 5;
+
+                    aliens.forEach(function(alien, alienIndex) {
+                        if (bullet.y < alien.y + alien.height && bullet.y + bullet.height > alien.y && 
+                            bullet.x < alien.x + alien.width && bullet.x + bullet.width > alien.x) {
+                            aliens.splice(alienIndex, 1);
+                            bullets.splice(bulletIndex, 1);
+                        }
+                    });
+                });
+
+                if (aliens.length === 0) {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    context.fillText('You Win', canvas.width / 2, canvas.height / 2);
+                    retryButton.style.display = 'block';
+                    return;
+                }
+
+                aliens.forEach(function(alien) {
+                    if (player.x < alien.x + alien.width && player.x + player.width > alien.x && 
+                        player.y < alien.y + alien.height && player.y + player.height > alien.y) {
+                        gameOver = true;
+                    }
+                });
+
+                if (gameOver) {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    context.fillText('Game Over', canvas.width / 2, canvas.height / 2);
+                    retryButton.style.display = 'block';
+                    return;
+                }
+
+                if (keys.ArrowLeft && player.x > 0) {
+                    player.x -= 5;
+                }
+                if (keys.ArrowRight && player.x + player.width < canvas.width) {
+                    player.x += 5;
+                }
+                if (keys.Space && Date.now() - lastFired > fireRate) {
+                    bullets.push({ x: player.x + player.width / 2, y: player.y, width: bulletWidth, height: bulletHeight });
+                    keys.Space = false;
+                    lastFired = Date.now();
+                }
+
+                requestAnimationFrame(update);
+            }
+
+            window.addEventListener('keydown', function(event) {
+                if (keys.hasOwnProperty(event.code)) {
+                    keys[event.code] = true;
+                }
+            });
+
+            window.addEventListener('keyup', function(event) {
+                if (keys.hasOwnProperty(event.code)) {
+                    keys[event.code] = false;
+                }
+            });
+
+            retryButton.addEventListener('click', init);
+
+            init();
+        </script>
+    </body>
+</html>
