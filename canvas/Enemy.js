@@ -6,7 +6,7 @@ export default class Enemy {
     this.height = 32;
 
     this.image = new Image();
-    this.image.src = `./images/enemy1.png`;
+    this.image.src = `./images/space-invader-rouge-removebg-preview.png`;
   }
 
   draw(ctx) {
