@@ -85,10 +85,10 @@ export default class Player {
 
 
   keydown = (event) => {
-    if (event.code == "KeyD") { // Touche D pour aller à droite
+    if (event.code == "ArrowRight") { // Flèche droite pour aller à droite
       this.rightPressed = true;
     }
-    if (event.code == "KeyA") { // Touche Q pour aller à gauche
+    if (event.code == "ArrowLeft") { // Flèche gauche pour aller à gauche
       this.leftPressed = true;
     }
     if (event.code == "Space") {
@@ -97,29 +97,29 @@ export default class Player {
       samba.volume = 0.3;
       samba.play();
     }
-    if (event.code == "KeyW") { // Touche Z pour aller vers le haut
+    if (event.code == "ArrowUp") { // Flèche vers le haut pour aller vers le haut
       this.upPressed = true;
     }
-    if (event.code == "KeyS") { // Touche S pour aller vers le bas
+    if (event.code == "ArrowDown") { // Flèche vers le bas pour aller vers le bas
       this.downPressed = true;
     }
   };
   
   keyup = (event) => {
-    if (event.code == "KeyD") {
+    if (event.code == "ArrowRight") {
       this.rightPressed = false;
     }
-    if (event.code == "KeyA") {
+    if (event.code == "ArrowLeft") {
       this.leftPressed = false;
     }
     if (event.code == "Space") {
       this.shootPressed = false;
     }
-    if (event.code == "KeyW") {
+    if (event.code == "ArrowUp") {
       this.upPressed = false;
     }
-    if (event.code == "KeyS") {
+    if (event.code == "ArrowDown") {
       this.downPressed = false;
     }
-  };
+  };  
 }
